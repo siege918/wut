@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "dev"
+AuthUserFile "/home/mebecj/.htpasswds/public_html/wut/dev/passwd"
+require valid-user
