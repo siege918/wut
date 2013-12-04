@@ -1,6 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head>
-<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>WUT</title>
+<html>
+
+<?php require('settings.php'); ?>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title><?php echo($sitename); ?></title>
 
 <style type="text/css">
 h1 {
@@ -10,30 +13,24 @@ font-weight: bolder;
 font-style: normal;
 text-transform: uppercase;
 text-align: center;
-color: white;
+color: <?php echo($textcolor); ?>;
 }
 recaptcha_area
 {
     margin: 0 auto;
 }
 </style>
-</head><body style="color: white; background-color: black;" alink="white" link="white" vlink="#990099">
+</head><body style="color: <?php echo($textcolor); ?>; background-color: <?php echo($backgroundcolor); ?>;" alink="<?php echo($textcolor); ?>" link="<?php echo($textcolor); ?>" vlink="#990099">
 
 <form  name="input" action="add.php" method="post">
 <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
 <tbody>
 <tr>
 <td>
-<h1>Submit a Video To <a href=http://wut.boringtrousers.com>WUT</a></h1>
-<h2 style="text-align: center;">BoringTrousers
-Might Think This Is Funny<br><br> Video Title (make it up): <input type="text" name="title" /></h2>
+<h1>Submit a Video To <a href=<?php echo($WUTurl); ?>><?php echo($sitename);?></a></h1>
+<h2 style="text-align: center;"><?php echo($submissionheader); ?><br><br> Video Title (make it up): <input type="text" name="title" /></h2>
 </td>
 </tr>
-<tr>
-<td>
-<p style="text-align: center;">Not Safe For Work <input type="checkbox" name="sfw" value="NSFW" /></p>
-</tr>
-</td>
 </tbody>
 </table>
 <br>
@@ -45,14 +42,14 @@ Might Think This Is Funny<br><br> Video Title (make it up): <input type="text" n
 <tr style="text-align: center; vertical-align: top; word-wrap: break-word;"><td>
 <div align="center">
   <?php
-  require_once('recaptchalib.php');
-  $publickey = "6LekrdUSAAAAAFFHF5HNMUAuZVLietQIiqvyRQfr"; // you got this from the signup page
-  echo recaptcha_get_html($publickey);
+  if ($usecaptcha)
+  {
+     require_once('recaptchalib.php');;
+     echo recaptcha_get_html($publickey);
+  }
   ?>
-</div>
-  Sorry, guys. We've had spambot issues</td></tr>
-<!--<tr style="text-align: center; vertical-align: top; word-wrap: break-word;"><td>Email Address (Only put it here if you want to be informed if your video has been accepted or rejected. Otherwise, leave it blank):<br> <input type="text" name="email" /></td></tr>-->
-<tr style="text-align: center; vertical-align: top; word-wrap: break-word;"><td><input type="submit" value="Submit" /></tr></td>
+</div></td></tr>
+<tr style="text-align: center; vertical-align: top; word-wrap: break-word;"><td><?php if ($usesubmissions){echo("<input type=\"submit\" value=\"Submit\" />");}?></tr></td>
 </tbody>
 </table>
 <br>

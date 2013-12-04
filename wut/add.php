@@ -1,7 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html><head>
+<html>
+<?php require 'settings.php'; ?>
+<head>
 <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1;">
-<meta HTTP-EQUIV="REFRESH" content="1; url=index.php"><title>WUT</title>
+<meta HTTP-EQUIV="REFRESH" content="1; url=index.php"><title><?php echo($sitename); ?></title>
 
 <style type="text/css">
 h1 {
@@ -11,48 +13,40 @@ font-weight: bolder;
 font-style: normal;
 text-transform: uppercase;
 text-align: center;
-color: white;
+color: <?php echo($textcolor); ?>;
 }
+a:link {color:<?php echo($textcolor); ?>;}      /* unvisited link */
+a:visited {color:<?php echo($textcolor); ?>;}  /* visited link */
+a:hover {color:<?php echo($textcolor); ?>;
+text-decoration:underline;}
 </style>
-</head><body style="color: white; background-color: black;" alink="white" link="white" vlink="#990099">
+</head><body style="color: <?php echo($textcolor); ?>; background-color: <?php echo($backgroundcolor);?>; alink=<?php echo($textcolor); ?> link=<?php echo($textcolor); ?> vlink=#990099">
 
 
 <?php
 
-require_once('recaptchalib.php');
-  $privatekey = "6LekrdUSAAAAADeHVvGpKVQB9G1NxSnyxpu9N-jD";
-  $resp = recaptcha_check_answer ($privatekey,
+   require_once('recaptchalib.php');
+   $resp = recaptcha_check_answer ($privatekey,
                                 $_SERVER["REMOTE_ADDR"],
                                 $_POST["recaptcha_challenge_field"],
-                                $_POST["recaptcha_response_field"]);
-								
-if (!$resp->is_valid) {
+                                $_POST["recaptcha_response_field"]);						
+if ($usecaptcha && !$resp->is_valid) {
 	die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
          "(reCAPTCHA said: " . $resp->error . ")");
 }
 else{
-$con = mysql_connect("localhost","mebecj_wut","867-5309");
+$con = mysql_connect("localhost",$sql_user,$sql_pass);
 if (!$con)
   {
   die('Could not connect: ' . mysql_error());
   }
-mysql_select_db("mebecj_wut", $con);
+mysql_select_db($sql_db, $con);
 $queer = mysql_query("SELECT MAX(ID) as Maximum FROM submissions");
 $arr = mysql_fetch_array($queer);
 $numofvidya = $arr['Maximum'];
 $thisvidid = $numofvidya + 1;
 
 $title = mysql_real_escape_string($_POST["title"]);
-
-$issfw = $_POST["sfw"];
-if ($issfw=="NSFW")
-{
-	$sfw = 0;
-}
-else
-{
-	$sfw = 1;
-}
 
 $thislink = $_POST["link"];
 $pattern = '/v=[a-zA-Z0-9\-_]*/';
@@ -61,8 +55,8 @@ $link = substr($matches[0], 2);
 
 $description = mysql_real_escape_string($_POST["desc"]);
 
-mysql_query("INSERT INTO submissions (ID, SFW, Title, Link, Description, Email)
-VALUES ($thisvidid, $sfw, '$title', '$link', '$description', '$email')");
+mysql_query("INSERT INTO submissions (ID, Title, Link, Description, Email)
+VALUES ($thisvidid, '$title', '$link', '$description', '$email')");
 
 mysql_close($con);
 }

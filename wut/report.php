@@ -5,20 +5,19 @@
 <body>
 
 <?php
+require("settings.php");
 
 $ID = $_POST["ID"];
-$to = "mebecjalt@gmail.com";
-$subject = sprintf("Video # %s is broken or duplicate", $ID);
-$body = "Just thought you'd like to know ^^";
-$headers = "From: report@wut.boringtrousers.com\r\n" .
-     "X-Mailer: php";
-if (mail($to, $subject, $body, $headers)) {
-   echo("<p>Message successfully sent!</p>");
-  } else {
-   echo("<p>Message delivery failed...</p>");
+$con = mysql_connect("localhost",$sql_user,$sql_pass);
+if (!$con)
+  {
+  die('Could not connect: ' . mysql_error());
   }
+mysql_select_db($sql_db, $con);
+mysql_query("INSERT INTO report (ID)
+VALUES ($ID)");
 
-
+echo("Report successful!")
 ?>
 
 </body>
