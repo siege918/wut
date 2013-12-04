@@ -9,11 +9,11 @@ $sitename = "A Generic WUT";
 
 
 //SQL username
-$sql_user = "mebecj_throwaway";
+$sql_user = "";
 //SQL password
-$sql_pass = "whoevencares";
+$sql_pass = "";
 //SQL database name
-$sql_db = "mebecj_throwaway";
+$sql_db = "";
 
 //Enables user submissions if true
 $usesubmissions = true;
