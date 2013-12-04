@@ -90,7 +90,7 @@ Enable Autoplay <input type="checkbox" checked="true" id="autoplay">
 <br>
 <form name="myform" action="report.php" method="POST">
 <input id="reportid" type="hidden" name="ID" value="<?php echo($vidid); ?>">
-<input type="submit" value="Report This Video"/></form>
+<?php if ($usereporting) echo("<input type=\"submit\" value=\"Report This Video\"/></form>");?>
 <br>
 
 </td></tr></tbody></table>
