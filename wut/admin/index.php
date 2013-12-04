@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
-<?php require_once(realpath(__DIR__ . '/../settings.php')); ?>
+<?php require_once("../settings.php"); ?>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title><?php echo($sitename);?></title>
 

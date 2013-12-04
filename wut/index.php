@@ -61,6 +61,7 @@ mysql_close($con);
 <tbody>
 <tr>
 <td>
+<h2 style="text-align: center;"><?php echo($pageheader); ?></h2>
 
 <h2 style="text-align: center;"><div id="title"><?php echo($title); ?></div></h2>
 </td>
@@ -85,7 +86,7 @@ Enable Autoplay <input type="checkbox" checked="true" id="autoplay">
 <br>
 <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td style="text-align: center; vertical-align: top;"><big><big><big><a onclick="getVideo()" href="javascript:void(0);">GET A NEW VIDEO</a></big></big></big>
 <br>
-<p stlye="text-align: center;">This site has <?php echo($numofvidya);?> videos and counting! <?php if($usesubmissions){ echo("And <a href=\""); echo($WUTurl); echo("submit.php\">YOU can submit new videos!</a>")}?></p>
+<p stlye="text-align: center;">This site has <?php echo($numofvidya);?> videos and counting! <?php if($usesubmissions){ echo("And <a href=\""); echo($WUTurl); echo("submit.php\">YOU can submit new videos!</a>");}?></p>
 <br>
 <form name="myform" action="report.php" method="POST">
 <input id="reportid" type="hidden" name="ID" value="<?php echo($vidid); ?>">

@@ -1,7 +1,7 @@
 <?php
 
 //The url of your WUT installation (ex. http://wut.boringtrousers.com/)
-$WUTurl = "http://wut.boringtrousers.com/";
+$WUTurl = "http://throwaway.wut.boringtrousers.com/";
 //Main Page Header
 $pageheader = "This Wut Isn't Even Set Up";
 //Site name (ex. WUT)
@@ -9,11 +9,11 @@ $sitename = "A Generic WUT";
 
 
 //SQL username
-$sql_user = "";
+$sql_user = "mebecj_throwaway";
 //SQL password
-$sql_pass = "";
+$sql_pass = "whoevencares";
 //SQL database name
-$sql_db = "";
+$sql_db = "mebecj_throwaway";
 
 //Enables user submissions if true
 $usesubmissions = true;
