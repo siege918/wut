@@ -51,6 +51,8 @@ $arry = mysql_fetch_array($queery);
 $title = $arry['Title'];
 $link = $arry['Link'];
 $desc = $arry['Description'];
+$desc = nl2br($desc);
+$desc = preg_replace('/((http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?)/', '<a href="\1">\1</a>', $desc);
 mysql_close($con);
 
 ?>

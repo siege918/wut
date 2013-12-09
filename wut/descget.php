@@ -11,6 +11,9 @@ $vidid = $_GET["id"];
 $queery = mysql_query("SELECT * FROM vidya WHERE ID=$vidid");
 $arry = mysql_fetch_array($queery);
 
-echo $arry['Description'];
+$desc = $arry['Description'];
+$desc = nl2br($desc);
+$desc = preg_replace('/((http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?)/', '<a href="\1">\1</a>', $desc);
+echo($desc);
 mysql_close($con);
 ?>
